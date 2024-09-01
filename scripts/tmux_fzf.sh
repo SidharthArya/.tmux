@@ -8,7 +8,7 @@ export SELECTION=$(for i in $(tmux list-sessions -F "#{session_name}: #{pane_cur
 do
     echo $i;
     export SESSION=$(echo $i | sed 's/:.*//g');
-    for j in $(tmux list-window -F "#{window_index} #{pane_current_command}" -t $SESSION);
+    for j in $(tmux list-window -F "#{window_index} #{pane_current_command} #{pane_current_path}" -t $SESSION);
     do
         echo $j | xargs echo - $SESSION ;
     done;
